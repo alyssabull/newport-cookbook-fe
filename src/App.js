@@ -11,6 +11,7 @@ const App = () => {
   };
 
   const displayRecipes = () => {
+    console.log(allRecipes)
     if (allRecipes) {
       return allRecipes.map((recipe) => {
         return (

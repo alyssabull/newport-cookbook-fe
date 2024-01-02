@@ -6,7 +6,7 @@ const App = () => {
   const getRecipes = async () => {
     return fetch(`${process.env.REACT_APP_DB_URL}/getmovies`)
     .then(response => response.json())
-    .then(result => setAllRecipes(result))
+    .then(result => setAllRecipes([result]))
     .catch(err => console.log(err))
   };
 

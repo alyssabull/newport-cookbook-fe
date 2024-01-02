@@ -16,7 +16,7 @@ const App = () => {
 
   const displayRecipes = () => {
     if (allRecipes) {
-      console.log(allRecipes[0].data)
+      console.log(allRecipes)
       // return allRecipes.map((recipe) => {
       //   return (
       //     <div key={recipe.id}>{recipe.movieName}</div>

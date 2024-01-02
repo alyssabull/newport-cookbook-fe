@@ -9,6 +9,7 @@ const App = () => {
       if (!response.ok) {
         throw Error(`Failed to fetch movies`)
       }
+      console.log(response.json())
       return response.json()
     })
     .catch(err => console.log(err))

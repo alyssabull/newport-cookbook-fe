@@ -4,8 +4,13 @@ import './App.css';
 const App = () => {
   // const [allRecipes, setAllRecipes] = useState(null);
   const getRecipes = () => {
-    fetch(`${process.env.REACT_APP_DB_URL}/getmovies`)
-    .then((response) => console.log(response.json()))
+    return fetch(`${process.env.REACT_APP_DB_URL}/getmovies`)
+    .then(response => {
+      if (!response.ok) {
+        throw Error(`Failed to fetch movies`)
+      }
+      return response.json()
+    })
     .catch(err => console.log(err))
   };
 

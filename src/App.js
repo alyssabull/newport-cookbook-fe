@@ -15,7 +15,7 @@ const App = () => {
       console.log(allRecipes)
       return allRecipes.map((recipe) => {
         return (
-          <div key={recipe.PersonID}>{recipe.FirstName} {recipe.LastName}</div>
+          <div key={recipe.id}>{recipe.title} {recipe.addedBy}</div>
         )
       })
     };

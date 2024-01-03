@@ -33,7 +33,6 @@ const App = () => {
 
   const postNewRecipe = () => {
     checkForRecipeError();
-    console.log(addRecipeError);
     if (!addRecipeError) {
       const recipeToAddFullDetails = {...recipeToAdd, dateAdded: new Date(), isFavorite: false }
       console.log(recipeToAddFullDetails)
@@ -50,7 +49,6 @@ const App = () => {
 
   const updateRecipeToAdd = (e, field) => {
     setRecipeToAdd({...recipeToAdd, [field]: e.target.value});
-    console.log(recipeToAdd)
   };
 
   return (
@@ -81,9 +79,9 @@ const App = () => {
           <label>Added By</label>
           <input type="text" onChange={(e) => updateRecipeToAdd(e, "addedBy")}></input>
         </div>
-        <button onClick={postNewRecipe}>Submit New Recipe</button>
+        <button onClick={() => postNewRecipe()}>Submit New Recipe</button>
       </form>
-      <button onClick={getRecipes}>Get All Recipes</button>
+      <button onClick={() => getRecipes()}>Get All Recipes</button>
       <div>
         {displayRecipes()}
       </div>

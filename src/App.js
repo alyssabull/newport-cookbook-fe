@@ -4,7 +4,7 @@ import './App.css';
 const App = () => {
   const [allRecipes, setAllRecipes] = useState(null);
   const getRecipes = async () => {
-    return fetch(`${process.env.REACT_APP_DB_URL}`)
+    return fetch(`${process.env.REACT_APP_DB_URL}/getmovies`)
     .then(response => response.json())
     .then(result => setAllRecipes([result]))
     .catch(err => console.log(err))

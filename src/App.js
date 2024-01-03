@@ -43,7 +43,7 @@ const App = () => {
         body: JSON.stringify(recipeToAddFullDetails)
       };
       return fetch(`${process.env.REACT_APP_DB_URL}/postnewrecipe`, requestOptions)
-      .then(() => getRecipes())
+      .then((response) => console.log(response.json()))
       .catch(err => console.log(err))
     }
   };

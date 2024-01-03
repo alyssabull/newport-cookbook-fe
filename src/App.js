@@ -34,11 +34,10 @@ const App = () => {
   const postNewRecipe = () => {
     // checkForRecipeError();
     // if (!addRecipeError) {
-      const recipeToAddFullDetails = {...recipeToAdd, dateAdded: new Date(), isFavorite: false }
+      const recipeToAddFullDetails = {...recipeToAdd, dateAdded: "2023-12-12 12:12:12", isFavorite: false }
       console.log(recipeToAddFullDetails)
       const requestOptions = {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(recipeToAddFullDetails)
       };
       return fetch(`${process.env.REACT_APP_DB_URL}/postnewrecipe`, requestOptions)

@@ -7,6 +7,8 @@ const App = () => {
   const [postResponse, setPostResponse] = useState(null);
   // const [addRecipeError, setAddRecipeError] = useState(false);
 
+  console.log(allRecipes, postResponse)
+
   const getRecipes = async () => {
     return fetch(`${process.env.REACT_APP_DB_URL}/getrecipes`)
     .then(response => response.json())
@@ -96,3 +98,17 @@ const App = () => {
 }
 
 export default App;
+
+
+fetch("https://newport-cookbook-be.cleverapps.io/postnewrecipe", {method: "POST",  body: JSON.stringify({
+  "picture": null,
+  "notes": "d",
+  "title": "d",
+  "description": "d",
+  "details": "d",
+  "instructions": "d",
+  "categories": "d",
+  "addedBy": "d",
+  "dateAdded": "2023-12-12 12:12:12",
+  "isFavorite": false
+})}).then(req => req.text()).then(console.log)

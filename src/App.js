@@ -3,7 +3,7 @@ import './App.css';
 
 const App = () => {
   const [allRecipes, setAllRecipes] = useState(null);
-  const [recipeToAdd, setRecipeToAdd] = useState({picture: null, notes: []});
+  const [recipeToAdd, setRecipeToAdd] = useState({picture: null, notes: ""});
   const [postResponse, setPostResponse] = useState(null);
   // const [addRecipeError, setAddRecipeError] = useState(false);
 
@@ -14,15 +14,16 @@ const App = () => {
     .catch(err => console.log(err))
   };
 
-  const displayRecipes = () => {
-    if (allRecipes) {
-      return allRecipes.map((recipe) => {
-        return (
-          <div key={recipe.id}>{recipe.title} {recipe.addedBy}</div>
-        )
-      })
-    };
-  };
+  // // useMemo these values
+  // const displayRecipes = () => {
+  //   if (allRecipes) {
+  //     return allRecipes.map((recipe) => {
+  //       return (
+  //         <div key={recipe.id}>{recipe.title} {recipe.addedBy}</div>
+  //       )
+  //     })
+  //   };
+  // };
 
   // const checkForRecipeError = () => {
   //   recipeToAdd.title ? setAddRecipeError(false) : setAddRecipeError(true);
@@ -32,17 +33,22 @@ const App = () => {
   //   recipeToAdd.addedBy ? setAddRecipeError(false) : setAddRecipeError(true);
   // };
 
-  const postNewRecipe = () => {
+  const postNewRecipe = (e) => {
+    e.preventDefault();
     // checkForRecipeError();
     // if (!addRecipeError) {
-      const recipeToAddFullDetails = {...recipeToAdd, dateAdded: "2023-12-12 12:12:12", isFavorite: false }
+      const recipeToAddFullDetails = {...recipeToAdd, dateAdded: "2023-12-12 12:12:12", isFavorite: "false" };
+      console.log('recipeToAddFullDetails', recipeToAddFullDetails)
       const requestOptions = {
         method: 'POST',
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify(recipeToAddFullDetails)
       };
       return fetch(`${process.env.REACT_APP_DB_URL}/postnewrecipe`, requestOptions)
-      .then((response) => setPostResponse(response.json()))
-      .then(() => console.log(postResponse))
+      .then(response => response.json())
+      .then(result => setPostResponse(result))
       .catch(err => console.log(err))
     // }
   };
@@ -79,11 +85,11 @@ const App = () => {
           <label>Added By</label>
           <input type="text" onChange={(e) => updateRecipeToAdd(e, "addedBy")}></input>
         </div>
-        <button onClick={postNewRecipe}>Submit New Recipe</button>
+        <button onClick={(e) => postNewRecipe(e)}>Submit New Recipe</button>
       </form>
       <button onClick={getRecipes}>Get All Recipes</button>
       <div>
-        {displayRecipes()}
+        {/* {displayRecipes()} */}
       </div>
     </div>
   );

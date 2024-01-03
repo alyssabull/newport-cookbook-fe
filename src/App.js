@@ -4,6 +4,7 @@ import './App.css';
 const App = () => {
   const [allRecipes, setAllRecipes] = useState(null);
   const [recipeToAdd, setRecipeToAdd] = useState({picture: null, notes: []});
+  const [postResponse, setPostResponse] = useState(null);
   // const [addRecipeError, setAddRecipeError] = useState(false);
 
   const getRecipes = async () => {
@@ -40,7 +41,8 @@ const App = () => {
         body: JSON.stringify(recipeToAddFullDetails)
       };
       return fetch(`${process.env.REACT_APP_DB_URL}/postnewrecipe`, requestOptions)
-      .then((response) => console.log(response.json()))
+      .then((response) => setPostResponse(response.json()))
+      .then(() => console.log(postResponse))
       .catch(err => console.log(err))
     // }
   };

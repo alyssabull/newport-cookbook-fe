@@ -33,6 +33,7 @@ const App = () => {
 
   const postNewRecipe = () => {
     checkForRecipeError();
+    console.log(addRecipeError);
     if (!addRecipeError) {
       const recipeToAddFullDetails = {...recipeToAdd, dateAdded: new Date(), isFavorite: false }
       console.log(recipeToAddFullDetails)

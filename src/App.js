@@ -4,7 +4,7 @@ import './App.css';
 const App = () => {
   const [allRecipes, setAllRecipes] = useState(null);
   const [recipeToAdd, setRecipeToAdd] = useState({picture: null, notes: []});
-  const [addRecipeError, setAddRecipeError] = useState(false);
+  // const [addRecipeError, setAddRecipeError] = useState(false);
 
   const getRecipes = async () => {
     return fetch(`${process.env.REACT_APP_DB_URL}/getrecipes`)
@@ -13,27 +13,27 @@ const App = () => {
     .catch(err => console.log(err))
   };
 
-  const displayRecipes = () => {
-    if (allRecipes) {
-      return allRecipes.map((recipe) => {
-        return (
-          <div key={recipe.id}>{recipe.title} {recipe.addedBy}</div>
-        )
-      })
-    };
-  };
+  // const displayRecipes = () => {
+  //   if (allRecipes) {
+  //     return allRecipes.map((recipe) => {
+  //       return (
+  //         <div key={recipe.id}>{recipe.title} {recipe.addedBy}</div>
+  //       )
+  //     })
+  //   };
+  // };
 
-  const checkForRecipeError = () => {
-    recipeToAdd.title ? setAddRecipeError(false) : setAddRecipeError(true);
-    recipeToAdd.description ? setAddRecipeError(false) : setAddRecipeError(true);
-    recipeToAdd.instructions ? setAddRecipeError(false) : setAddRecipeError(true);
-    recipeToAdd.categories ? setAddRecipeError(false) : setAddRecipeError(true);
-    recipeToAdd.addedBy ? setAddRecipeError(false) : setAddRecipeError(true);
-  };
+  // const checkForRecipeError = () => {
+  //   recipeToAdd.title ? setAddRecipeError(false) : setAddRecipeError(true);
+  //   recipeToAdd.description ? setAddRecipeError(false) : setAddRecipeError(true);
+  //   recipeToAdd.instructions ? setAddRecipeError(false) : setAddRecipeError(true);
+  //   recipeToAdd.categories ? setAddRecipeError(false) : setAddRecipeError(true);
+  //   recipeToAdd.addedBy ? setAddRecipeError(false) : setAddRecipeError(true);
+  // };
 
   const postNewRecipe = () => {
-    checkForRecipeError();
-    if (!addRecipeError) {
+    // checkForRecipeError();
+    // if (!addRecipeError) {
       const recipeToAddFullDetails = {...recipeToAdd, dateAdded: new Date(), isFavorite: false }
       console.log(recipeToAddFullDetails)
       const requestOptions = {
@@ -44,7 +44,7 @@ const App = () => {
       return fetch(`${process.env.REACT_APP_DB_URL}/postnewrecipe`, requestOptions)
       .then((response) => console.log(response.json()))
       .catch(err => console.log(err))
-    }
+    // }
   };
 
   const updateRecipeToAdd = (e, field) => {

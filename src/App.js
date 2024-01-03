@@ -43,9 +43,9 @@ const App = () => {
       console.log('recipeToAddFullDetails', recipeToAddFullDetails)
       const requestOptions = {
         method: 'POST',
-        headers: {
-          "Content-Type": "application/json",
-        },
+        // headers: {
+        //   "Content-Type": "application/json",
+        // },
         body: JSON.stringify(recipeToAddFullDetails)
       };
       return fetch(`${process.env.REACT_APP_DB_URL}/postnewrecipe`, requestOptions)
@@ -100,15 +100,15 @@ const App = () => {
 export default App;
 
 
-fetch("https://newport-cookbook-be.cleverapps.io/postnewrecipe", {method: "POST",  body: JSON.stringify({
-  "picture": null,
-  "notes": "d",
-  "title": "d",
-  "description": "d",
-  "details": "d",
-  "instructions": "d",
-  "categories": "d",
-  "addedBy": "d",
-  "dateAdded": "2023-12-12 12:12:12",
-  "isFavorite": false
-})}).then(req => req.text()).then(console.log)
+// fetch("https://newport-cookbook-be.cleverapps.io/postnewrecipe", {method: "POST",  body: JSON.stringify({
+//   "picture": null,
+//   "notes": "d",
+//   "title": "d",
+//   "description": "d",
+//   "details": "d",
+//   "instructions": "d",
+//   "categories": "d",
+//   "addedBy": "d",
+//   "dateAdded": "2023-12-12 12:12:12",
+//   "isFavorite": false
+// })}).then(req => req.text()).then(console.log)

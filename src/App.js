@@ -83,7 +83,7 @@ const App = () => {
       </form>
       <button onClick={() => getRecipes()}>Get All Recipes</button>
       <div>
-        {displayRecipes()}
+        {/* {displayRecipes()} */}
       </div>
     </div>
   );

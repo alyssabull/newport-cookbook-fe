@@ -13,15 +13,15 @@ const App = () => {
     .catch(err => console.log(err))
   };
 
-  // const displayRecipes = () => {
-  //   if (allRecipes) {
-  //     return allRecipes.map((recipe) => {
-  //       return (
-  //         <div key={recipe.id}>{recipe.title} {recipe.addedBy}</div>
-  //       )
-  //     })
-  //   };
-  // };
+  const displayRecipes = () => {
+    if (allRecipes) {
+      return allRecipes.map((recipe) => {
+        return (
+          <div key={recipe.id}>{recipe.title} {recipe.addedBy}</div>
+        )
+      })
+    };
+  };
 
   // const checkForRecipeError = () => {
   //   recipeToAdd.title ? setAddRecipeError(false) : setAddRecipeError(true);
@@ -35,7 +35,6 @@ const App = () => {
     // checkForRecipeError();
     // if (!addRecipeError) {
       const recipeToAddFullDetails = {...recipeToAdd, dateAdded: "2023-12-12 12:12:12", isFavorite: false }
-      console.log(recipeToAddFullDetails)
       const requestOptions = {
         method: 'POST',
         body: JSON.stringify(recipeToAddFullDetails)
@@ -82,7 +81,7 @@ const App = () => {
       </form>
       <button onClick={getRecipes}>Get All Recipes</button>
       <div>
-        {/* {displayRecipes()} */}
+        {displayRecipes()}
       </div>
     </div>
   );

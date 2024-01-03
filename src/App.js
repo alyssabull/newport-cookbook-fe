@@ -79,9 +79,9 @@ const App = () => {
           <label>Added By</label>
           <input type="text" onChange={(e) => updateRecipeToAdd(e, "addedBy")}></input>
         </div>
-        <button onClick={() => postNewRecipe()}>Submit New Recipe</button>
+        <button onClick={postNewRecipe}>Submit New Recipe</button>
       </form>
-      <button onClick={() => getRecipes()}>Get All Recipes</button>
+      <button onClick={getRecipes}>Get All Recipes</button>
       <div>
         {/* {displayRecipes()} */}
       </div>

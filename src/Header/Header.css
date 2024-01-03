@@ -1,0 +1,6 @@
+.header {
+    display: flex;
+    flex-direction: start;
+    font-size: 25px;
+    margin: 25px;
+}

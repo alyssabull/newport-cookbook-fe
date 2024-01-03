@@ -1,13 +1,12 @@
 import { useState } from 'react';
+import { Header } from '../Header/Header';
 import './App.css';
 
 const App = () => {
   const [allRecipes, setAllRecipes] = useState(null);
-  const [recipeToAdd, setRecipeToAdd] = useState({picture: null, notes: ""});
-  const [postResponse, setPostResponse] = useState(null);
-  // const [addRecipeError, setAddRecipeError] = useState(false);
+  const [recipeToAdd, setRecipeToAdd] = useState({picture: "", notes: ""});
 
-  console.log(allRecipes, postResponse)
+  console.log(allRecipes)
 
   const getRecipes = async () => {
     return fetch(`${process.env.REACT_APP_DB_URL}/getrecipes`)
@@ -27,33 +26,22 @@ const App = () => {
   //   };
   // };
 
-  // const checkForRecipeError = () => {
-  //   recipeToAdd.title ? setAddRecipeError(false) : setAddRecipeError(true);
-  //   recipeToAdd.description ? setAddRecipeError(false) : setAddRecipeError(true);
-  //   recipeToAdd.instructions ? setAddRecipeError(false) : setAddRecipeError(true);
-  //   recipeToAdd.categories ? setAddRecipeError(false) : setAddRecipeError(true);
-  //   recipeToAdd.addedBy ? setAddRecipeError(false) : setAddRecipeError(true);
-  // };
-
   const postNewRecipe = (e) => {
     e.preventDefault();
-    // checkForRecipeError();
-    // if (!addRecipeError) {
-      const recipeToAddFullDetails = {...recipeToAdd, dateAdded: "2023-12-12 12:12:12", isFavorite: "false" };
-      console.log('recipeToAddFullDetails', recipeToAddFullDetails)
-      const requestOptions = {
-        method: 'POST',
-        // headers: {
-        //   "Content-Type": "application/json",
-        // },
-        body: JSON.stringify(recipeToAddFullDetails)
-      };
-      return fetch(`${process.env.REACT_APP_DB_URL}/postnewrecipe`, requestOptions)
-      .then(response => response.json())
-      .then(result => setPostResponse(result))
-      .catch(err => console.log(err))
-    // }
-  };
+    const recipeToAddFullDetails = {...recipeToAdd, dateAdded: "2023-12-12 12:12:12", isFavorite: "false" };
+    console.log('recipeToAddFullDetails', recipeToAddFullDetails)
+    const requestOptions = {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(recipeToAddFullDetails)
+    };
+    console.log(requestOptions.body.picture)
+    return fetch(`${process.env.REACT_APP_DB_URL}/postnewrecipe`, requestOptions)
+    .then(response => alert('hello!'))
+    .catch(err => console.log(err))
+  }; 
 
   const updateRecipeToAdd = (e, field) => {
     setRecipeToAdd({...recipeToAdd, [field]: e.target.value});
@@ -61,7 +49,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1>Newport Cookbook</h1>
+      <Header></Header>
       <form className="form">
         <div>
           <label>Title</label>
@@ -98,17 +86,3 @@ const App = () => {
 }
 
 export default App;
-
-
-// fetch("https://newport-cookbook-be.cleverapps.io/postnewrecipe", {method: "POST",  body: JSON.stringify({
-//   "picture": null,
-//   "notes": "d",
-//   "title": "d",
-//   "description": "d",
-//   "details": "d",
-//   "instructions": "d",
-//   "categories": "d",
-//   "addedBy": "d",
-//   "dateAdded": "2023-12-12 12:12:12",
-//   "isFavorite": false
-// })}).then(req => req.text()).then(console.log)

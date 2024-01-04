@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Header } from '../Header/Header';
 import { AddRecipeModal } from '../AddRecipeModal/AddRecipeModal';
+import { Buffer } from "buffer";
 import Modal from 'react-modal';
 import './App.css';
 

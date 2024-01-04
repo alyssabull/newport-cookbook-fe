@@ -13,14 +13,16 @@ export const AddRecipeModal = ({ closeModal, updateRecipeToAdd, postNewRecipe, r
         })
     };
 
-    const handleSelectImage = (event) => {
-        const file = event.target.files[0];
-        const fileReader = new FileReader();
-        fileReader.addEventListener("load", () => {
-            setRecipeToAdd({...recipeToAdd, picture: fileReader.result});
-        });
-        fileReader.readAsDataURL(file);
-      };
+    const handleSelectImage = (e) => {
+        console.log(e.target.files);
+        setRecipeToAdd({...recipeToAdd, picture: URL.createObjectURL(e.target.files[0])});
+        // const file = event.target.files[0];
+        // const fileReader = new FileReader();
+        // fileReader.addEventListener("load", () => {
+        //     setRecipeToAdd({...recipeToAdd, picture: fileReader.result});
+        // });
+        // fileReader.readAsDataURL(file);
+    };
 
     return(
         <div>

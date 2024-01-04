@@ -26,10 +26,19 @@ const App = () => {
       },
       body: JSON.stringify(recipeToAddFullDetails)
     };
+    console.log(recipeToAddFullDetails)
     return fetch(`${process.env.REACT_APP_DB_URL}/postnewrecipe`, requestOptions)
     .then(() => closeModal())
     .catch(err => console.log(err))
   }; 
+
+  const deleteRecipe = (id) => {
+    return fetch(`${process.env.REACT_APP_DB_URL}/deleterecipe/${id}`, {
+      method: 'DELETE',
+    })
+    .then(() => getRecipes())
+    .catch(err => console.log(err))
+  };
 
   const displayRecipes = () => {
     return allRecipes.map((recipe) => {
@@ -45,13 +54,15 @@ const App = () => {
           <div>{recipe.categories}</div>
           <div>{recipe.notes}</div>
           <div>{recipe.dateAdded}</div>
-          <div>{recipe.picture}</div>
+          <img src={recipe.picture} alt="preview" className="image-preview"/>
+          <button onClick={() => deleteRecipe(recipe.id)}>Delete Recipe</button>
         </div>
       )
     })
   };
 
   const updateRecipeToAdd = (e, field) => {
+    console.log({[field]: e.target.value})
     setRecipeToAdd({...recipeToAdd, [field]: e.target.value});
   };
 

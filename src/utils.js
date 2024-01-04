@@ -12,20 +12,20 @@ export const addRecipeFields = [
     {
         id: 3,
         label: "Details",
-        description: "details"
+        name: "details"
     },
     {
         id: 4,
         label: "Instructions",
-        description: "instructions"
+        name: "instructions"
     },
     {  
         id: 5,
         label: "Categories",
-        description: "categories"
+        name: "categories"
     },
     {   id: 6,
         label: "Added by",
-        description: "addedBy"
+        name: "addedBy"
     },
 ];

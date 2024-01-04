@@ -20,7 +20,7 @@ export const AddRecipeModal = ({ closeModal, updateRecipeToAdd, postNewRecipe, r
             setRecipeToAdd({...recipeToAdd, picture: fileReader.result});
         });
         fileReader.readAsDataURL(file);
-      };
+    };
 
     return(
         <div>

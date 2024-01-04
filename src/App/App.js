@@ -17,21 +17,38 @@ const App = () => {
   };
 
   const postNewRecipe = (e) => {
-    e.preventDefault();
-    const recipeToAddFullDetails = {...recipeToAdd, dateAdded: "2023-12-12 12:12:12", isFavorite: "false" };
-    const requestOptions = {
-      method: 'POST',
+    const bufferData = Buffer.from(recipeToAdd.picture, 'base64');
+    fetch("https://api.tinify.com/shrink", bufferData, {
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'image/jpg',
+        'Authorization': 'Basic ' + Buffer.from(`api:${process.env.REACT_APP_TINY_PNG_API_KEY}`).toString('base64'),
       },
-      body: JSON.stringify(recipeToAddFullDetails)
-    };
-    return fetch(`${process.env.REACT_APP_DB_URL}/postnewrecipe`, requestOptions)
-    .then(() => {
-      closeModal();
-      getRecipes();
-    })
-    .catch(err => console.log(err))
+    }).then((response) => {
+      const compressedData = response.data.output.buffer;
+      console.log(compressedData)
+    //   const sqlInsert = "INSERT INTO `bzh9f8szz4sa4nts1m00`.`all_recipes` (dateAdded, title, description, details, instructions, categories, isFavorite, notes, addedBy, picture) VALUES (?,?,?,?,?,?,?,?,?,?)";
+    //   db.query(sqlInsert, [req.body.dateAdded, req.body.title, req.body.description, req.body.details, req.body.instructions, req.body.categories, req.body.isFavorite, req.body.notes, req.body.addedBy, finalCompression], async (err, result) => {
+    //       if (err) res.send(err);
+    //       await res.send({data: "recipe post successful"});
+    //   });
+    });
+    
+    
+    // e.preventDefault();
+    // const recipeToAddFullDetails = {...recipeToAdd, dateAdded: "2023-12-12 12:12:12", isFavorite: "false" };
+    // const requestOptions = {
+    //   method: 'POST',
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(recipeToAddFullDetails)
+    // };
+    // return fetch(`${process.env.REACT_APP_DB_URL}/postnewrecipe`, requestOptions)
+    // .then(() => {
+    //   closeModal();
+    //   getRecipes();
+    // })
+    // .catch(err => console.log(err))
   }; 
 
   const deleteRecipe = (id) => {

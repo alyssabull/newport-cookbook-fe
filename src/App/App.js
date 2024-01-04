@@ -6,7 +6,7 @@ import './App.css';
 
 const App = () => {
   const [allRecipes, setAllRecipes] = useState(null);
-  const [recipeToAdd, setRecipeToAdd] = useState({picture: "", notes: ""});
+  const [recipeToAdd, setRecipeToAdd] = useState({notes: ""});
   const [addRecipeModalIsOpen, setAddRecipeModalIsOpen] = useState(false)
 
   const getRecipes = async () => {
@@ -26,9 +26,11 @@ const App = () => {
       },
       body: JSON.stringify(recipeToAddFullDetails)
     };
-    console.log(recipeToAddFullDetails)
     return fetch(`${process.env.REACT_APP_DB_URL}/postnewrecipe`, requestOptions)
-    .then(() => closeModal())
+    .then(() => {
+      closeModal();
+      getRecipes();
+    })
     .catch(err => console.log(err))
   }; 
 
@@ -62,7 +64,6 @@ const App = () => {
   };
 
   const updateRecipeToAdd = (e, field) => {
-    console.log({[field]: e.target.value})
     setRecipeToAdd({...recipeToAdd, [field]: e.target.value});
   };
 

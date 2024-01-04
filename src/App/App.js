@@ -17,6 +17,7 @@ const App = () => {
   };
 
   const postNewRecipe = (e) => {
+    e.preventDefault();
     const bufferData = Buffer.from(recipeToAdd.picture, 'base64');
     fetch("https://api.tinify.com/shrink", bufferData, {
       headers: {
@@ -33,8 +34,8 @@ const App = () => {
     //   });
     });
     
-    
-    // e.preventDefault();
+
+   
     // const recipeToAddFullDetails = {...recipeToAdd, dateAdded: "2023-12-12 12:12:12", isFavorite: "false" };
     // const requestOptions = {
     //   method: 'POST',

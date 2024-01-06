@@ -23,8 +23,11 @@ export const AddRecipeModal = ({ closeModal, updateRecipeToAdd, postNewRecipe, r
     };
     
     const getUploadedImages = () => {
-        axios.get(`${process.env.REACT_APP_DB_URL}/getimages`)
-        .then((result) => setAllPhotos(result.data[0]))
+        // axios.get(`${process.env.REACT_APP_DB_URL}/getimages`)
+        // .then((result) => setAllPhotos(result.data[0]))
+        // .catch(err => console.log(err))
+        axios.get(`${process.env.REACT_APP_DB_URL}/getsingleimage`)
+        .then((result) => console.log(result))
         .catch(err => console.log(err))
     };
 

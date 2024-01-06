@@ -5,6 +5,7 @@ import './AddRecipeModal.css';
 
 export const AddRecipeModal = ({ closeModal, updateRecipeToAdd, postNewRecipe, recipeToAdd, setRecipeToAdd }) => {
     const [file, setFile] = useState();
+    const [allPhotos, setAllPhotos] = useState();
 
     const createAddRecipeFields = () => {
         return addRecipeFields.map((field) => {
@@ -30,7 +31,7 @@ export const AddRecipeModal = ({ closeModal, updateRecipeToAdd, postNewRecipe, r
     
     const getUploadedImages = () => {
         axios.get(`${process.env.REACT_APP_DB_URL}/getimages`)
-        .then((result) => console.log(result))
+        .then((result) => setAllPhotos(result.data[0]))
         .catch(err => console.log(err))
     };
 
@@ -53,7 +54,7 @@ export const AddRecipeModal = ({ closeModal, updateRecipeToAdd, postNewRecipe, r
                 {createAddRecipeFields()}
                 <input type="file" onChange={handleSelectImage}/>
                     {recipeToAdd.picture ?
-                    <img src={recipeToAdd.picture} alt="preview" className="image-preview"/> : null
+                    <img src={allPhotos[0].picture} alt="preview" className="image-preview"/> : null
                 }
                 <button onClick={(e) => handleUpload(e)}>Submit Photo</button>
                 <button onClick={(e) => postNewRecipe(e)}>Submit New Recipe</button>

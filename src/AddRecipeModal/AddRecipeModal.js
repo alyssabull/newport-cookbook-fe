@@ -5,7 +5,7 @@ import './AddRecipeModal.css';
 
 export const AddRecipeModal = ({ closeModal, updateRecipeToAdd, postNewRecipe, recipeToAdd, setRecipeToAdd }) => {
     const [file, setFile] = useState();
-    const [allPhotos, setAllPhotos] = useState();
+    const [allPhotos, setAllPhotos] = useState([]);
 
     const createAddRecipeFields = () => {
         return addRecipeFields.map((field) => {
@@ -20,13 +20,6 @@ export const AddRecipeModal = ({ closeModal, updateRecipeToAdd, postNewRecipe, r
 
     const handleSelectImage = (e) => {
         setFile(e.target.files[0]);
-        // setRecipeToAdd({...recipeToAdd, picture: e.target.files[0]})
-        // const file = event.target.files[0];
-        // const fileReader = new FileReader();
-        // fileReader.addEventListener("load", () => {
-        //     setRecipeToAdd({...recipeToAdd, picture: fileReader.result});
-        // });
-        // fileReader.readAsDataURL(file);
     };
     
     const getUploadedImages = () => {
@@ -53,8 +46,8 @@ export const AddRecipeModal = ({ closeModal, updateRecipeToAdd, postNewRecipe, r
                 <h2>Add new recipe</h2>
                 {createAddRecipeFields()}
                 <input type="file" onChange={handleSelectImage}/>
-                    {recipeToAdd.picture ?
-                    <img src={allPhotos[0].picture} alt="preview" className="image-preview"/> : null
+                    {allPhotos.length > 0 ?
+                    <img src={URL.createObjectURL(file)} alt="preview" className="image-preview"/> : null
                 }
                 <button onClick={(e) => handleUpload(e)}>Submit Photo</button>
                 <button onClick={(e) => postNewRecipe(e)}>Submit New Recipe</button>

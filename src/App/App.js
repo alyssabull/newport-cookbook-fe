@@ -73,7 +73,7 @@ const App = () => {
 
   useEffect(() => {
     if (!allRecipes) {
-      // getRecipes();
+      getRecipes();
     };
     Modal.setAppElement('body');
   });

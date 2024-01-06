@@ -27,19 +27,19 @@ export const AddRecipeModal = ({ closeModal, updateRecipeToAdd, postNewRecipe, r
         // });
         // fileReader.readAsDataURL(file);
     };
+    
+    const getUploadedImages = () => {
+        axios.get(`${process.env.REACT_APP_DB_URL}/getimages`)
+        .then((result) => console.log(result))
+        .catch(err => console.log(err))
+    };
 
     const handleUpload = (e) => {
         e.preventDefault();
         const formData = new FormData();
         formData.append('image', file);
-        axios.post(`${process.env.REACT_APP_DB_URL}/upload`, formData)
-        .then((result) => {
-            if(result.data.Status === "Success") {
-                console.log("Worked")
-            } else {
-                console.log("Broken :-(")
-            }
-        })
+        axios.post(`${process.env.REACT_APP_DB_URL}/uploadimage`, formData)
+        .then(() => getUploadedImages())
         .catch(err => console.log(err))
     };
 

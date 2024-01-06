@@ -47,7 +47,7 @@ export const AddRecipeModal = ({ closeModal, updateRecipeToAdd, postNewRecipe, r
                 {createAddRecipeFields()}
                 <input type="file" onChange={handleSelectImage}/>
                     {allPhotos.length > 0 ?
-                    <img src={`../../../server/public/images/${allPhotos[0].picture}`} alt="preview" className="image-preview"/> : null
+                    <img src={`images/${allPhotos[0].picture}`} alt="preview" className="image-preview"/> : null
                 }
                 <button onClick={(e) => handleUpload(e)}>Submit Photo</button>
                 <button onClick={(e) => postNewRecipe(e)}>Submit New Recipe</button>
